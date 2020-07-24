@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WELCOME</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Times New Roman;
+        }
+        header{
+            background-image: url({% static 'staticpic/background.jpg'%});
+            height: 130vh;
+            background-size: cover;
+            background-position: center;
+        }
+        ul{
+            float:right;
+            list-style-type: none;
+            margin-top:40px;
+            margin-right: 25px;
+        }
+        ul li{
+            display:inline-block;
+        }
+        
+        ul li a{
+            text-decoration: none; 
+            color:#fff;
+            padding: 5px 15px;
+            border:1px solid white;
+            transition: 0.8s ease;
+        }
+        ul li a:hover{
+            background-color: white;
+            color: #000;
+        }
+        ul li.on a{
+            background-color: white;
+            color: #000;
+        }
+        .hello{
+            position:absolute;
+            top: 2%;
+            left: 5%;
+        }
+        .hello h1{
+            color: white;
+            font-size:40px;
+            
+        }
+        .about{
+            position: absolute;
+            top: 90%;
+            left: 50%;
+        }
+        .profile img{
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            border-radius: 50%;
+            transform: translate(-50%,-50%);
+            height: 300px;
+            width: 300px;
+            
+        }
+        .about h1{
+            color: white;
+            font-size:20px;
+            transform: translate(-50%,-50%);
+            text-align: center;
+        
+        }
+        
+        .instagram img{
+            position: absolute;
+            top: 110%;
+            left: 47%;
+            transform: translate(-50%,-50%);
+            height: 40px;
+            width: auto ;
+        }
+        .facebook img{
+            position: absolute;
+            top: 110%;
+            left: 42%;
+            transform: translate(-50%,-50%);
+            height: 40px;
+            width: auto ;
+        }
+        .codechef img{
+            position: absolute;
+            top: 110%;
+            left: 52%;
+            transform: translate(-50%,-50%);
+            height: 40px;
+            width: auto ;
+        }
+        .github img{
+            position: absolute;
+            top: 110%;
+            left: 57%;
+            transform: translate(-50%,-50%);
+            height: 40px;
+            width: auto ;
+        }
+        
+    </style>
+</head>
+<body>
+    <header> 
+        <div class="main">
+            <div class="hello">
+                <h1>Hello!  {%if user.is_authenticated%}{{user.first_name}}{%endif%} </h1>
+            </div>
+            <div class="profile">
+                <img src="{% static 'staticpic/profile.JPG'%}">
+            </div>
+            <ul>
+                <li  class="on"><a href="#">HOME</a></li>
+                <li><a href="gallery">GALLERY</a></li>
+                <li><a href="{% static 'Resume.pdf'%}" download>RESUME</a></li>
+                {% if user.is_authenticated%}
+                <li><a href="logout">LOG OUT</a></li>
+                {%else%}
+                <li><a href="login">LOG IN</a></li>
+                <li><a href="register">REGISTER</a></li>
+                {%endif%}
+            </ul>
+            <div class="about">
+                <h1>I am Rahul Singha<br>
+                     I am currently studying in the third year (Undergraduate) <br>
+                     in the Department of Chemical Engineering, Jadavpur University.<br>
+                     Despite the fact that I'm pursuing a degree in Chemical Engineering,<br>
+                     Computer science and its scopes facinates me more than anything.<br>
+                     Hence, I am currently giving most of my time in<br>
+                     competitive programming and other related things in this field.<br>
+
+
+                     Contact: 8172097929<br>
+                     Mail: rahuljax26@gmail.com
+                </h1>
+            </div>
+            <div class="facebook">
+                <a href="https://www.facebook.com/rahul.singha.5895/"><img src="{% static 'staticpic/facebook.png'%}"></a>
+            </div>
+            <div class="instagram">
+                <a href="https://www.instagram.com/jax._26/?hl=en"><img src="{% static 'staticpic/instagram.png'%}"></a>
+            </div>
+            <div class="codechef">
+                <a href="https://www.codechef.com/users/jax26"><img src="{% static 'staticpic/Codechef3.png'%}"></a>
+            </div>
+            <div class="github">
+                <a href="https://github.com/RahulJax"><img src="{% static 'staticpic/github.png'%}"></a>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
