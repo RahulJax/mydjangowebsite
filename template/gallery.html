@@ -1,0 +1,109 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gallery</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Times New Roman;
+        }
+        header{
+            background-image: url({% static 'staticpic/background.jpg'%});
+            height: 150vh;
+            background-size: cover;
+            background-position: center;
+        }
+        ul{
+            float:right;
+            list-style-type: none;
+            margin-top:40px;
+            margin-right: 25px;
+        }
+        ul li{
+            display:inline-block;
+        }
+        
+        ul li a{
+            text-decoration: none; 
+            color:#fff;
+            padding: 5px 15px;
+            border:1px solid white;
+            transition: 0.8s ease;
+        }
+        ul li a:hover{
+            background-color: white;
+            color: #000;
+        }
+        ul li.on a{
+            background-color: white;
+            color: #000;
+        }
+        .hello{
+            position:absolute;
+            top: 2%;
+            left: 5%;
+        }
+        .hello h1{
+            color: white;
+            font-size:40px;
+        
+        }
+        .container{
+            position:absolute;
+            top: 40%;
+            left: 20px;
+            overflow:auto;
+        }  
+        .gallery{
+            margin:5px;
+            float:left;
+            width:310px;
+            height:200px;
+            padding:10px;
+        }
+        .gallery img{
+            width:300px;
+        }
+        .intro{
+            position: absolute;
+            top: 25%;
+            left: 2%;
+            margin: 0 auto;
+            color: White;
+            size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header> 
+        <div class="main">
+            <div class="hello">
+                <h1>Hello!   {%if user.is_authenticated%}{{user.first_name}}{%endif%} </h1>
+            </div>
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li  class="on"><a href="#">GALLERY</a></li>
+                <li><a href="{% static 'Resume.pdf'%}" download>RESUME</a></li>
+                {%if user.is_authenticated%}
+                <li><a href="logout">LOG OUT</a></li>
+                {%else%}
+                <li><a href="login">LOG IN</a></li>
+                <li><a href="register">REGISTER</a></li>
+                {%endif%}
+            </ul>
+        </div>
+        <div class="intro">
+           <h1> Here is my Photo Gallery</h1>
+        </div>
+        <div class="container">
+            {% for photo in photos %}
+            <div class="gallery">
+                <img src="{{photo.img.url}}">
+            </div>
+            {%endfor%}
+        </div>
+    </header>
+</body>
+</html>
